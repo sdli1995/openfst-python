@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+ac_python_devel.m4
+setup.py
+openfst_python/__init__.py
+openfst_python/test.py
+openfst_python.egg-info/PKG-INFO
+openfst_python.egg-info/SOURCES.txt
+openfst_python.egg-info/dependency_links.txt
+openfst_python.egg-info/not-zip-safe
+openfst_python.egg-info/top_level.txt
