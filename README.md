@@ -1,6 +1,6 @@
 # OpenFst-Python
 
-[![Python Version](https://img.shields.io/badge/python-2.7%2C%203.5%2C%203.6%2C%203.7-blue.svg)](https://www.python.org/)
+[![Python Version](https://img.shields.io/badge/python-2.7%2C%203.5%2C%203.6%2C%203.7%2C%203.8%2C%203.9-blue.svg)](https://www.python.org/)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 OpenFst-Python exposes the official Python API to
@@ -45,7 +45,7 @@ possession of the appropriate tar.gz file, you can use the following command:
 python setup.py build --download-dir=DIRECTORY_CONTAINING_OPENFST_TAR_GZ
 python setup.py install
 ```
-## Unit test
+## Unit Test
 
 ```bash
 python openfst_python/test.py
@@ -61,12 +61,12 @@ A toy example:
 ```python
 import openfst_python as fst
 
-f = fst.Fst()
+f = fst.VectorFst()
 s0 = f.add_state()
 s1 = f.add_state()
 s2 = f.add_state()
 f.add_arc(s0, fst.Arc(1, 2, fst.Weight(f.weight_type(), 3.0), s1))
-f.add_arc(s0, fst.Arc(1, 3, fst.Weight.One(f.weight_type()), s2))
+f.add_arc(s0, fst.Arc(1, 3, fst.Weight.one(f.weight_type()), s2))
 f.add_arc(s1, fst.Arc(2, 1, fst.Weight(f.weight_type(), 1.0), s2))
 f.set_start(s0)
 f.set_final(s2, fst.Weight(f.weight_type(), 1.5))
