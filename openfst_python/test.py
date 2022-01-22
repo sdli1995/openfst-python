@@ -8,12 +8,12 @@ import openfst_python as fst
 
 class TestOpenFstPython(unittest.TestCase):
     def test_simple(self):
-        f = fst.Fst()
+        f = fst.VectorFst()
         s0 = f.add_state()
         s1 = f.add_state()
         s2 = f.add_state()
         f.add_arc(s0, fst.Arc(1, 1, fst.Weight(f.weight_type(), 3.0), s1))
-        f.add_arc(s0, fst.Arc(1, 1, fst.Weight.One(f.weight_type()), s2))
+        f.add_arc(s0, fst.Arc(1, 1, fst.Weight.one(f.weight_type()), s2))
         f.set_start(s0)
         f.set_final(s2, fst.Weight(f.weight_type(), 1.5))
         # Test fst

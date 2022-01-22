@@ -1,6 +1,5 @@
 # OpenFst-Python
 
-[![Build Status](https://travis-ci.com/jpuigcerver/openfst-python.svg?branch=master)](https://travis-ci.com/jpuigcerver/openfst-python)
 [![Python Version](https://img.shields.io/badge/python-2.7%2C%203.5%2C%203.6%2C%203.7-blue.svg)](https://www.python.org/)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
@@ -10,7 +9,7 @@ OpenFst-Python exposes the official Python API to
 in the Python package, so you don't need to install it separately.
 
 The version number of OpenFst-Python is the same as the OpenFst version
-used. **The current version uses OpenFst 1.7.2.**
+used. **The current version uses OpenFst 1.8.1.**
 
 ## Build Requirements
 
@@ -45,6 +44,11 @@ possession of the appropriate tar.gz file, you can use the following command:
 ```bash
 python setup.py build --download-dir=DIRECTORY_CONTAINING_OPENFST_TAR_GZ
 python setup.py install
+```
+## Unit test
+
+```bash
+python openfst_python/test.py
 ```
 
 ## Documentation

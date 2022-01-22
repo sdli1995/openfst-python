@@ -13,7 +13,7 @@ from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
 
 
-OPENFST_VERSION = "1.7.2"
+OPENFST_VERSION = "1.8.1"
 
 
 def copy(src, dst):
@@ -34,7 +34,7 @@ def get_filename_with_sha256(filename):
     basename = os.path.basename(filename)
     basename_parts = basename.split(".")
     libname, libext = basename_parts[0], ".".join(basename_parts[1:])
-    return "%s-%s.%s" % (libname, sha256[:8], libext)
+    return "%s.%s" % (libname, libext)
 
 
 class OpenFstExtension(Extension):
@@ -96,10 +96,10 @@ class OpenFstBuildExt(build_ext):
     @property
     def openfst_deps_libs(self):
         return [
-            "%s/src/extensions/far/.libs/libfstfar.so.16" % self.openfst_dirname,
-            "%s/src/extensions/far/.libs/libfstfarscript.so.16" % self.openfst_dirname,
-            "%s/src/script/.libs/libfstscript.so.16" % self.openfst_dirname,
-            "%s/src/lib/.libs/libfst.so.16" % self.openfst_dirname,
+            "%s/src/extensions/far/.libs/libfstfar.so.24" % self.openfst_dirname,
+            "%s/src/extensions/far/.libs/libfstfarscript.so.24" % self.openfst_dirname,
+            "%s/src/script/.libs/libfstscript.so.24" % self.openfst_dirname,
+            "%s/src/lib/.libs/libfst.so.24" % self.openfst_dirname,
         ]
 
     @property
