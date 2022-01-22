@@ -17,7 +17,7 @@ The build process will download and build OpenFst from the official
 webpage, so you need an Internet connection and all OpenFst dependencies.
 Essentially, you will need:
 
-- A C++ compiler supporting C++11 (tested with GCC 4.9).
+- A C++ compiler supporting C++17 (tested with GCC 10 on Debian 11 which python version is 3.9).
 - [PatchELF](https://nixos.org/patchelf.html).
 - [Zlib development](https://zlib.net/).
 - [Python Requests](http://docs.python-requests.org).
