@@ -144,7 +144,8 @@ class OpenFstBuildExt(build_ext):
             subprocess.check_call(["aclocal"])
             subprocess.check_call(["autoconf", "-f"])
             # sed -i "s/ver >= '3.6'/ver >= '3.6' or ver >= '3.10'/g" configure
-            subprocess.check_call(["sed", "-i", "\"s/ver >= \'3.6\'/ver >= \'3.6\' or ver >= \'3.10\'/g\"", "configure"])
+            os.system("sed -i \"s/ver >= '3.6'/ver >= '3.6' or ver >= '3.10'/g\" configure")
+            #subprocess.check_call(["sed", "-i", "\"s/ver >= \'3.6\'/ver >= \'3.6\' or ver >= \'3.10\'/g\"", "configure"])
             configure_cmd = [
                 "./configure",
                 "--enable-compact-fsts",
