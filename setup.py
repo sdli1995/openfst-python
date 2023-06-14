@@ -11,7 +11,7 @@ import sys
 from distutils.command.build import build
 from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
-
+py310plus= sys.version_info.major >= 3 and sys.version_info.minor >=10
 
 OPENFST_VERSION = "1.8.2"
 
@@ -143,8 +143,8 @@ class OpenFstBuildExt(build_ext):
                 subprocess.check_call(["make", "distclean"])
             subprocess.check_call(["aclocal"])
             subprocess.check_call(["autoconf", "-f"])
-            # sed -i "s/ver >= '3.6'/ver >= '3.6' or ver >= '3.10'/g" configure
-            os.system("sed -i \"s/ver >= '3.6'/ver >= '3.6' or ver >= '3.10'/g\" configure")
+            if py310plus:
+                os.system("sed -i \"s/ver >= '3.6'/ver >= '3.6' or ver >= '3.10'/g\" configure")
             configure_cmd = [
                 "./configure",
                 "--enable-compact-fsts",
@@ -157,13 +157,12 @@ class OpenFstBuildExt(build_ext):
                 "--enable-special",
             ]
             subprocess.check_call(configure_cmd)
-
-            fix_cmd = "patch -p0 < %s/cmemory.patch"%old_dir
-            print(fix_cmd)
-            os.system(fix_cmd)
-            cython_file = "src/extensions/python/pywrapfst.pyx"
-            cython_cpp_file = "src/extensions/python/pywrapfst.cpp"
-            os.system("cython --cplus -I include/ %s -o %s"%(cython_file,cython_cpp_file))
+            if py310plus:
+                fix_cmd = "patch -p0 < %s/cmemory.patch"%old_dir
+                os.system(fix_cmd)
+                cython_file = "src/extensions/python/pywrapfst.pyx"
+                cython_cpp_file = "src/extensions/python/pywrapfst.cpp"
+                os.system("cython --cplus -I include/ %s -o %s"%(cython_file,cython_cpp_file))
             subprocess.check_call(["make", "-j16"])
             os.chdir(old_dir)
 

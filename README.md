@@ -1,6 +1,6 @@
 # OpenFst-Python
 
-[![Python Version](https://img.shields.io/badge/python-2.7%2C%203.5%2C%203.6%2C%203.7%2C%203.8%2C%203.9-blue.svg)](https://www.python.org/)
+[![Python Version](https://img.shields.io/badge/python-2.7%2C%203.5%2C%203.6%2C%203.7%2C%203.8%2C%203.9%2C%203.10%2C%203.11-blue.svg)](https://www.python.org/)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 OpenFst-Python exposes the official Python API to
