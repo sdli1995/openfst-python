@@ -1,0 +1,10 @@
+--- src/extensions/python/cmemory.pxd	2023-06-14 10:25:13.050647010 +0800
++++ src/extensions/python/cmemory.pxd	2023-06-14 10:25:18.774655008 +0800
+@@ -20,6 +20,6 @@
+ from libcpp.memory cimport unique_ptr
+ 
+ 
+-cdef extern from <fst/compat.h> namespace "fst" nogil:
++cdef extern from "fst/compat.h" namespace "fst" nogil:
+ 
+   unique_ptr[T] WrapUnique[T](T *)

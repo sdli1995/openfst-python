@@ -13,7 +13,7 @@ from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
 
 
-OPENFST_VERSION = "1.8.1"
+OPENFST_VERSION = "1.8.2"
 
 
 def copy(src, dst):
@@ -96,10 +96,10 @@ class OpenFstBuildExt(build_ext):
     @property
     def openfst_deps_libs(self):
         return [
-            "%s/src/extensions/far/.libs/libfstfar.so.24" % self.openfst_dirname,
-            "%s/src/extensions/far/.libs/libfstfarscript.so.24" % self.openfst_dirname,
-            "%s/src/script/.libs/libfstscript.so.24" % self.openfst_dirname,
-            "%s/src/lib/.libs/libfst.so.24" % self.openfst_dirname,
+            "%s/src/extensions/far/.libs/libfstfar.so.25" % self.openfst_dirname,
+            "%s/src/extensions/far/.libs/libfstfarscript.so.25" % self.openfst_dirname,
+            "%s/src/script/.libs/libfstscript.so.25" % self.openfst_dirname,
+            "%s/src/lib/.libs/libfst.so.25" % self.openfst_dirname,
         ]
 
     @property
@@ -145,7 +145,6 @@ class OpenFstBuildExt(build_ext):
             subprocess.check_call(["autoconf", "-f"])
             # sed -i "s/ver >= '3.6'/ver >= '3.6' or ver >= '3.10'/g" configure
             os.system("sed -i \"s/ver >= '3.6'/ver >= '3.6' or ver >= '3.10'/g\" configure")
-            #subprocess.check_call(["sed", "-i", "\"s/ver >= \'3.6\'/ver >= \'3.6\' or ver >= \'3.10\'/g\"", "configure"])
             configure_cmd = [
                 "./configure",
                 "--enable-compact-fsts",
@@ -158,7 +157,14 @@ class OpenFstBuildExt(build_ext):
                 "--enable-special",
             ]
             subprocess.check_call(configure_cmd)
-            subprocess.check_call(["make", "-j4"])
+
+            fix_cmd = "patch -p0 < %s/cmemory.patch"%old_dir
+            print(fix_cmd)
+            os.system(fix_cmd)
+            cython_file = "src/extensions/python/pywrapfst.pyx"
+            cython_cpp_file = "src/extensions/python/pywrapfst.cpp"
+            os.system("cython --cplus -I include/ %s -o %s"%(cython_file,cython_cpp_file))
+            subprocess.check_call(["make", "-j16"])
             os.chdir(old_dir)
 
     def openfst_copy_libraries(self, ext):

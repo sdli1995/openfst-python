@@ -9,7 +9,7 @@ OpenFst-Python exposes the official Python API to
 in the Python package, so you don't need to install it separately.
 
 The version number of OpenFst-Python is the same as the OpenFst version
-used. **The current version uses OpenFst 1.8.1.**
+used. **The current version uses OpenFst 1.8.2.**
 
 ## Build Requirements
 
@@ -17,21 +17,22 @@ The build process will download and build OpenFst from the official
 webpage, so you need an Internet connection and all OpenFst dependencies.
 Essentially, you will need:
 
-- A C++ compiler supporting C++17 (tested with GCC 10 on Debian 11 which python version is 3.9).
+- A C++ compiler supporting C++17 (tested with GCC 12 on Debian 12 which python version >= 3.10).
+- [Cython](https://cython.org/).
 - [PatchELF](https://nixos.org/patchelf.html).
 - [Zlib development](https://zlib.net/).
 - [Python Requests](http://docs.python-requests.org).
 
 ## Installation
 
-Most likely, you want to avoid the build process. Then, simply install the
+Most likely, you need to install deps. Then, simply install the
 package from PyPI:
 
 ```bash
-pip install openfst-python
+pip install absl-py requests cython
 ```
 
-Alternatively, if you are installing from sources, you can simply do:
+After that installing from sources, you can simply do:
 
 ```bash
 python setup.py install
