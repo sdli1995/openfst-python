@@ -158,7 +158,7 @@ class OpenFstBuildExt(build_ext):
             ]
             subprocess.check_call(configure_cmd)
             if py310plus:
-            fix_cmd = "patch -p0 < %s/cmemory.patch"%old_dir
+                fix_cmd = "patch -p0 < %s/cmemory.patch"%old_dir
                 os.system(fix_cmd)
                 cython_file = "src/extensions/python/pywrapfst.pyx"
                 cython_cpp_file = "src/extensions/python/pywrapfst.cpp"
