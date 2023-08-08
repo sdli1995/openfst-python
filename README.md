@@ -29,7 +29,7 @@ Most likely, you need to install deps. Then, simply install the
 package from PyPI:
 
 ```bash
-pip install absl-py requests cython
+pip install absl-py requests cython==0.29.36
 ```
 
 After that installing from sources, you can simply do:
