@@ -163,7 +163,7 @@ class OpenFstBuildExt(build_ext):
                 cython_file = "src/extensions/python/pywrapfst.pyx"
                 cython_cpp_file = "src/extensions/python/pywrapfst.cpp"
                 os.system("cython --cplus -I include/ %s -o %s"%(cython_file,cython_cpp_file))
-                subprocess.check_call(["make", "-j16"])
+            subprocess.check_call(["make", "-j16"])
             os.chdir(old_dir)
 
     def openfst_copy_libraries(self, ext):
